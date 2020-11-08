@@ -3,15 +3,10 @@ module.exports = {
     '@vue/cli-plugin-babel/preset'
   ],
   plugins: [
-    'lodash',
-    [
-      'import',
-      {
-        libraryName: 'vant',
-        libraryDirectory: 'es',
-        style: true
-      },
-      'vant'
-    ]
+    ['import', {
+      libraryName: 'vant',
+      libraryDirectory: 'es',
+      style: true
+    }, 'vant']
   ]
 }

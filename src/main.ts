@@ -1,29 +1,17 @@
-import Vue from 'vue'
-import 'amfe-flexible'
-import FastClick from 'fastclick'
-import '@/libs/vant'
-import '@/styles/index.scss'
-
+import { createApp } from 'vue'
 import App from './App.vue'
-import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import { AppConfig } from './config/app'
+import { loadAllPlugins } from './plugins'
 
-// 解决移动端click事件300毫秒延迟方法
-if ('addEventListener' in document) {
-  document.addEventListener(
-    'DOMContentLoaded',
-    function() {
-      FastClick.attach(document.body)
-    },
-    false
-  )
-}
+const app = createApp(App)
+app.config.globalProperties.globalConfig = AppConfig
 
-Vue.config.productionTip = false
+// 加载所有的plugin
+loadAllPlugins(app)
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+app.use(store)
+app.use(router)
+
+app.mount('#app')

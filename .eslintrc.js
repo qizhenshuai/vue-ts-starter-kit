@@ -3,28 +3,21 @@ module.exports = {
   env: {
     node: true
   },
-  'extends': [
-    'plugin:vue/essential',
+  extends: [
+    'plugin:vue/vue3-essential',
     '@vue/standard',
-    '@vue/typescript'
+    '@vue/typescript/recommended'
   ],
-  rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    "space-before-function-paren": 0
-  },
   parserOptions: {
-    parser: '@typescript-eslint/parser'
+    ecmaVersion: 2020
   },
-  overrides: [
-    {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
-      ],
-      env: {
-        jest: true
-      }
-    }
-  ]
+  rules: {
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-tabs': 'off',
+    indent: 2,
+    'space-before-function-paren': 0,
+    camelcase: [1, { properties: 'never' }],
+    '@typescript-eslint/camelcase': ['error']
+  }
 }
