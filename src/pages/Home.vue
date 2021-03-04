@@ -6,13 +6,17 @@
       type="primary"
       @click="handleTest"
     >测试</van-button>
+    <van-button
+      type="primary"
+      @click="handleQueryWeather"
+    >获取天气信息</van-button>
   </div>
 </template>
 
 <script lang="ts">
 import { computed, reactive } from 'vue'
 import { useStore } from 'vuex'
-
+import { fetchWeather } from '../api/home'
 interface Config {
   version: string;
 }
@@ -30,7 +34,14 @@ export default {
         version: '3.x'
       })
     }
-    return { config, handleTest, version }
+    const handleQueryWeather = async() => {
+      const weathers = await fetchWeather({
+        city: '北京',
+        key: process.env.VUE_APP_JUHE_KEY
+      })
+      console.log('weathers--->', weathers)
+    }
+    return { config, handleTest, version, handleQueryWeather }
   }
 }
 </script>
